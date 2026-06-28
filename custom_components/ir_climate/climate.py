@@ -29,7 +29,11 @@ class IRClimate(ClimateEntity):
             HVACMode.AUTO,
         ]
 
-        self._attr_supported_features = ClimateEntityFeature.TARGET_TEMPERATURE
+        self._attr_supported_features = (
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_ON
+            | ClimateEntityFeature.TURN_OFF
+        )
         self._attr_temperature_unit = UnitOfTemperature.CELSIUS
 
         self._resolver = Resolver(db)
@@ -66,3 +70,11 @@ class IRClimate(ClimateEntity):
             await self._transport.send(code)
 
         self.async_write_ha_state()
+
+    async def async_turn_off(self):
+        """Turn the entity off."""
+        await self.async_set_hvac_mode(HVACMode.OFF)
+
+    async def async_turn_on(self):
+        """Turn the entity on."""
+        await self.async_set_hvac_mode(HVACMode.COOL)
