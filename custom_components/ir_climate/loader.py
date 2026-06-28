@@ -3,7 +3,7 @@ import yaml
 from pathlib import Path
 
 def load_codes(file_name: str):
-    path = Path("/config/ir_climate") / file_name
+    path = Path("homeassistant/config/ir_climate") / file_name
 
     if not path.exists():
         raise FileNotFoundError(f"Missing IR code file: {path}")
