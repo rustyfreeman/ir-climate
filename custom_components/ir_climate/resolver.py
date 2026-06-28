@@ -7,6 +7,8 @@ class Resolver:
         c = self.db["commands"]
 
         if mode == "off":
+            if False in c:
+                return c[False]["code"]
             return c["off"]["code"]
 
         if mode == "cool":
