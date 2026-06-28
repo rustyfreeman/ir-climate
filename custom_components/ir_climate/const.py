@@ -1,0 +1,2 @@
+
+DOMAIN = "ir_climate"
