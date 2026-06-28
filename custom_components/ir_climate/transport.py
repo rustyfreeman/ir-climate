@@ -22,7 +22,7 @@ class MQTTTransport:
         await mqtt.async_publish(
             self.hass,
             self.topic,
-            json.dumps(payload),
+            json.dumps(payload, indent=2),
             qos=0,
             retain=False,
         )
