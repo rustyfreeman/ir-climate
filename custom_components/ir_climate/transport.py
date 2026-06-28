@@ -1,6 +1,8 @@
 
 import json
 from homeassistant.components import mqtt
+import logging
+_LOGGER = logging.getLogger(__name__)
 
 class MQTTTransport:
     def __init__(self, hass, topic):
@@ -8,6 +10,8 @@ class MQTTTransport:
         self.topic = topic
 
     async def send(self, code: str):
+        _LOGGER.warning("IR sending to %s: %s...", self.topic, code[:20])
+        
         payload = {
             "ir_code_to_send": code
         }
