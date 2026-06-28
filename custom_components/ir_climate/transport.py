@@ -16,6 +16,9 @@ class MQTTTransport:
             "ir_code_to_send": code
         }
 
+        payload_str = json.dumps(payload)
+        _LOGGER.warning("MQTT payload bytes: %r", payload_str)
+
         await mqtt.async_publish(
             self.hass,
             self.topic,
