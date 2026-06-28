@@ -20,6 +20,7 @@ class IRClimate(ClimateEntity):
         self.hass = hass
 
         self._attr_name = entry.data["name"]
+        self._attr_unique_id = entry.entry_id
         self._attr_hvac_modes = [
             HVACMode.OFF,
             HVACMode.COOL,
