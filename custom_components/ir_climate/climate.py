@@ -4,6 +4,14 @@ from homeassistant.components.climate.const import HVACMode, ClimateEntityFeatur
 
 from .resolver import Resolver
 from .transport import MQTTTransport
+from .const import DOMAIN
+
+async def async_setup_entry(hass, entry, async_add_entities):
+    """Set up the climate platform from a config entry."""
+    db = hass.data[DOMAIN][entry.entry_id]
+    async_add_entities([
+        IRClimate(hass, entry, db)
+    ])
 
 class IRClimate(ClimateEntity):
 
