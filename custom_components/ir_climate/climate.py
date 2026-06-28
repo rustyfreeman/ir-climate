@@ -1,6 +1,7 @@
 
 from homeassistant.components.climate import ClimateEntity
 from homeassistant.components.climate.const import HVACMode, ClimateEntityFeature
+from homeassistant.const import UnitOfTemperature
 
 from .resolver import Resolver
 from .transport import MQTTTransport
@@ -29,6 +30,7 @@ class IRClimate(ClimateEntity):
         ]
 
         self._attr_supported_features = ClimateEntityFeature.TARGET_TEMPERATURE
+        self._attr_temperature_unit = UnitOfTemperature.CELSIUS
 
         self._resolver = Resolver(db)
         self._transport = MQTTTransport(hass, entry.data["mqtt_topic"])
