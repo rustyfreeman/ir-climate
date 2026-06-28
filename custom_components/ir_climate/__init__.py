@@ -7,12 +7,9 @@ from .const import DOMAIN
 PLATFORMS = ["climate"]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up ir_climate from a config entry."""
     hass.data.setdefault(DOMAIN, {})
-    
-    db = load_codes(entry.data["codes_file"])
+    db = load_codes(hass, entry.data["codes_file"])   # pass hass
     hass.data[DOMAIN][entry.entry_id] = db
-
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     return True
 
